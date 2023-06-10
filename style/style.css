@@ -1,0 +1,277 @@
+body {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  grid-template-rows: 1.5fr 8.5fr;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: #e9eef5;
+}
+
+.btn {
+  padding: 0.7em 1em;
+  background: #e64c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+}
+.btn:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.btn:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.modal {
+  inset: 0;
+  margin: auto;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.modal::backdrop {
+  background: black;
+  opacity: 0.3;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-column: span 2;
+  padding: 1rem 2rem;
+  margin: 0.5rem;
+  background: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+header .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 2rem;
+  margin: 0.5rem;
+  height: -moz-fit-content;
+  height: fit-content;
+  text-align: center;
+}
+aside .summary {
+  font-size: 1.1rem;
+  width: 90%;
+  border-collapse: collapse;
+}
+aside .summary tr:not(:last-of-type) {
+  border-bottom: 1px solid;
+}
+aside .summary tr th {
+  padding: 0.5rem;
+  text-align: left;
+}
+aside .summary tr td {
+  padding: 0.5rem;
+  text-align: right;
+}
+aside .new-book.btn {
+  width: 100%;
+  font-size: 1.3rem;
+}
+aside .new-book.modal form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: 30rem;
+  padding: 2rem;
+  text-align: left;
+}
+aside .new-book.modal form h2 {
+  text-align: center;
+}
+aside .new-book.modal form label {
+  font-weight: bold;
+}
+aside .new-book.modal form input:not([type=checkbox]) {
+  width: 100%;
+  padding: 0.5em 1em;
+  font-weight: normal;
+}
+aside .new-book.modal form .button-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+aside .new-book.modal form .button-wrapper .cancel.btn {
+  background: #e9e9ed;
+  color: black;
+}
+aside .remove-book.modal div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2rem;
+}
+aside .remove-book.modal div h2 {
+  grid-column: span 2;
+}
+aside .remove-book.modal div .cancel.btn {
+  background: #e9e9ed;
+  color: black;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.3rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  overflow-y: scroll;
+  /* Firefox */
+  scrollbar-width: none;
+  /* Internet Explorer 10+ */
+  -ms-overflow-style: none;
+  /* Safari and Chrome */
+}
+main::-webkit-scrollbar {
+  display: none;
+}
+main:empty {
+  background: url("../images/empty-space-placeholder/empty-space_black.svg") no-repeat center/auto;
+  opacity: 0.5;
+}
+main .card {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  position: relative;
+  height: 230px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+main .card .image-placeholder {
+  background-color: #35495e;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px 0 0 5px;
+}
+main .card .image-placeholder.black {
+  background-image: url("../images/image-placeholder/abstract_black.jpg");
+}
+main .card .image-placeholder.cyan {
+  background-image: url("../images/image-placeholder/abstract_cyan.jpg");
+}
+main .card .image-placeholder.dark-blue {
+  background-image: url("../images/image-placeholder/abstract_dark-blue.jpg");
+}
+main .card .image-placeholder.green {
+  background-image: url("../images/image-placeholder/abstract_green.jpg");
+}
+main .card .image-placeholder.orange {
+  background-image: url("../images/image-placeholder/abstract_orange.jpg");
+}
+main .card .image-placeholder.red {
+  background-image: url("../images/image-placeholder/abstract_red.jpg");
+}
+main .card .image-placeholder.violet {
+  background-image: url("../images/image-placeholder/abstract_violet.jpg");
+}
+main .card .image-placeholder.white {
+  background-image: url("../images/image-placeholder/abstract_white.jpg");
+}
+main .card .image-placeholder.yellow {
+  background-image: url("../images/image-placeholder/abstract_yellow.jpg");
+}
+main .card .meta {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-auto-rows: auto 1fr;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+main .card .meta .author {
+  text-transform: uppercase;
+  color: #616161;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /* number of lines to show */
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+main .card .meta .pages {
+  text-align: right;
+  color: #616161;
+  font-size: 0.9rem;
+}
+main .card .meta .title {
+  grid-column: span 2;
+  font-size: 1.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /* number of lines to show */
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+main .card .meta .status.btn {
+  grid-column: span 2;
+  width: 100%;
+  padding: 1em;
+}
+main .card .meta .status.btn[data-is-read=true] {
+  background: #e64c3c;
+}
+main .card .meta .status.btn[data-is-read=false] {
+  background: #e9e9ed;
+  color: black;
+}
+main .card button.remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  translate: 30% -30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  aspect-ratio: 1/1;
+  background: white;
+  opacity: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.15s;
+  pointer-events: none;
+}
+main .card button.remove * {
+  pointer-events: none;
+}
+main .card:hover button.remove {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (width < 940px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}/*# sourceMappingURL=style.css.map */

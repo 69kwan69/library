@@ -1,0 +1,401 @@
+// Variables
+// # Colors
+$clr-accent-red: #e64c3c;
+$clr-accent-blue: #35495e;
+$clr-light: #e9eef5;
+$clr-normal-button: #e9e9ed;
+$clr-white: white;
+$clr-black: black;
+// # Spacing
+$spacing-body: .5rem;
+$spacing-section: 2rem;
+// # Border radius
+$border-radius-section: 10px;
+$border-radius-button: 5px;
+
+
+
+// Utilities
+@mixin hide-scrollbar {
+    /* Firefox */
+    scrollbar-width: none;
+    /* Internet Explorer 10+ */
+    -ms-overflow-style: none;
+
+    /* Safari and Chrome */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@mixin replace-with-ellipsis($line) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    /* number of lines to show */
+    -webkit-line-clamp: $line;
+    line-clamp: $line;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin button {
+    padding: 0.7em 1em;
+
+    background: $clr-accent-red;
+    color: $clr-white;
+    border: none;
+    border-radius: $border-radius-button;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    &:active {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+}
+
+@mixin modal {
+    inset: 0;
+    margin: auto;
+
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+    &::backdrop {
+        background: $clr-black;
+        opacity: .3;
+    }
+}
+
+
+
+// Initial Settings
+body {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    grid-template-rows: 1.5fr 8.5fr;
+    gap: $spacing-body;
+
+    padding: $spacing-body;
+
+    background: $clr-light;
+}
+
+.btn {
+    @include button;
+}
+
+.modal {
+    @include modal;
+}
+
+
+
+// Header Section
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-column: span 2;
+
+    padding: 1rem $spacing-section;
+    margin: .5rem;
+
+    background: $clr-white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+    // Logo
+    .logo {
+        @include flex-center;
+        gap: 1em;
+    }
+}
+
+
+
+// Aside Section
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    position: relative;
+
+    background: $clr-white;
+    border-radius: $border-radius-section;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+    padding: $spacing-section;
+    margin: .5rem;
+    height: fit-content;
+
+    text-align: center;
+
+    .summary {
+        font-size: 1.1rem;
+        width: 90%;
+        // border: 1px solid;
+        border-collapse: collapse;
+
+        tr {
+            &:not(:last-of-type) {
+                border-bottom: 1px solid;
+            }
+
+            th {
+                padding: .5rem;
+                text-align: left;
+            }
+
+            td {
+                padding: .5rem;
+                text-align: right;
+            }
+        }
+    }
+
+    // New book button
+    .new-book.btn {
+        width: 100%;
+        font-size: 1.3rem;
+    }
+
+    // New book modal
+    .new-book.modal {
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+
+            width: 30rem;
+            padding: $spacing-section;
+            text-align: left;
+
+            h2 {
+                text-align: center;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            input:not([type=checkbox]) {
+                width: 100%;
+                padding: .5em 1em;
+                font-weight: normal;
+            }
+
+            .button-wrapper {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+
+                .cancel.btn {
+                    background: $clr-normal-button;
+                    color: $clr-black;
+                }
+            }
+        }
+    }
+
+    // Remove book modal
+    .remove-book.modal {
+        div {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+
+            padding: $spacing-section;
+
+            h2 {
+                grid-column: span 2;
+            }
+
+            .cancel.btn {
+                background: $clr-normal-button;
+                color: $clr-black;
+            }
+        }
+    }
+}
+
+
+// Main Section
+main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.3rem;
+
+    padding: .5rem;
+    border-radius: $border-radius-section;
+
+    overflow-y: scroll;
+    @include hide-scrollbar;
+
+    &:empty {
+        background: url('../images/empty-space-placeholder/empty-space_black.svg') no-repeat center / auto;
+        opacity: .5;
+    }
+
+    // Card styling
+    .card {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+
+        position: relative;
+        height: 230px;
+
+        background: $clr-white;
+        $border-radius-card: 5px;
+        border-radius: $border-radius-card;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+        .image-placeholder {
+            background-color: #35495e;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: $border-radius-card 0 0 $border-radius-card;
+
+            &.black {
+                background-image: url('../images/image-placeholder/abstract_black.jpg');
+            }
+
+            &.cyan {
+                background-image: url('../images/image-placeholder/abstract_cyan.jpg');
+            }
+
+            &.dark-blue {
+                background-image: url('../images/image-placeholder/abstract_dark-blue.jpg');
+            }
+
+            &.green {
+                background-image: url('../images/image-placeholder/abstract_green.jpg');
+            }
+
+            &.orange {
+                background-image: url('../images/image-placeholder/abstract_orange.jpg');
+            }
+
+            &.red {
+                background-image: url('../images/image-placeholder/abstract_red.jpg');
+            }
+
+            &.violet {
+                background-image: url('../images/image-placeholder/abstract_violet.jpg');
+            }
+
+            &.white {
+                background-image: url('../images/image-placeholder/abstract_white.jpg');
+            }
+
+            &.yellow {
+                background-image: url('../images/image-placeholder/abstract_yellow.jpg');
+            }
+        }
+
+        .meta {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            grid-auto-rows: auto 1fr;
+            gap: .5rem;
+
+            padding: 1rem;
+
+            .author {
+                text-transform: uppercase;
+                color: #616161;
+                font-size: .9rem;
+
+                @include replace-with-ellipsis(2);
+            }
+
+            .pages {
+                text-align: right;
+                color: #616161;
+                font-size: .9rem;
+            }
+
+            .title {
+                grid-column: span 2;
+                font-size: 1.4rem;
+
+                @include replace-with-ellipsis(3);
+            }
+
+            .status.btn {
+                grid-column: span 2;
+                width: 100%;
+                padding: 1em;
+
+                &[data-is-read=true] {
+                    background: $clr-accent-red;
+                }
+
+                &[data-is-read=false] {
+                    background: $clr-normal-button;
+                    color: $clr-black;
+                }
+            }
+        }
+
+        // Remove button styling
+        button.remove {
+            position: absolute;
+            top: 0;
+            right: 0;
+            translate: 30% -30%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 1.5rem;
+            aspect-ratio: 1 / 1;
+
+            background: $clr-white;
+            opacity: 0;
+
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            border: none;
+            border-radius: 50%;
+
+            cursor: pointer;
+            transition: .15s;
+            pointer-events: none;
+
+            * {
+                pointer-events: none;
+            }
+        }
+
+        &:hover button.remove {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+}
+
+// # Media queries
+@media (width < 940px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
