@@ -23,13 +23,15 @@ const totalNumber = summary.querySelector('.total-number').lastElementChild;
 // ## Local storage 
 const library = JSON.parse(localStorage.getItem('library')) || [];
 
-// ## Book object constructor
-function Book(title, author, pages, isRead = false, colorTheme) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.colorTheme = colorTheme;
+// ## Book Class
+class Book {
+    constructor(title, author, pages, isRead = false, colorTheme) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+        this.colorTheme = colorTheme;
+    }
 }
 
 
